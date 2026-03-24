@@ -1,11 +1,17 @@
 import { useState } from "react";
-import { getShuffledBoard, isSolved } from "./utils/puzzle";
+import { getShuffledBoard, isSolved, moveTile } from "./utils/puzzle";
 
 function App() {
   const [tiles, setTiles] = useState<number[]>(getShuffledBoard);
   const [moves, setMoves] = useState(0);
 
   const solved = isSolved(tiles);
+
+  const handleTileClick = (index: number) => {
+    const newTiles = moveTile(tiles, index);
+    if (newTiles !== tiles) setMoves(m => m + 1);
+    setTiles(newTiles);
+  };
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
@@ -16,6 +22,7 @@ function App() {
         {tiles.map((tile, index) => (
           <div
             key={index}
+            onClick={() => handleTileClick(index)}
             className={`w-20 h-20 flex items-center justify-center text-2xl font-bold rounded-lg cursor-pointer
               ${tile === 0 ? "bg-gray-200" : "bg-white border border-gray-300 hover:bg-gray-50"}`}
           >
