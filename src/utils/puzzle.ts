@@ -61,3 +61,9 @@ export function moveTile(tiles: number[], index: number): number[] {
   [newTiles[emptyIndex], newTiles[index]] = [newTiles[index], newTiles[emptyIndex]];
   return newTiles;
 }
+
+export function swapTiles(tiles: number[], fromIndex: number, toIndex: number): number[] {
+  const newTiles = [...tiles];
+  [newTiles[fromIndex], newTiles[toIndex]] = [newTiles[toIndex], newTiles[fromIndex]];
+  return newTiles;
+}
