@@ -37,6 +37,16 @@ function App() {
       >
         Shuffle
       </button>
+      <button
+        onClick={() => setIsCheatMode(prev => !prev)}
+        className={`mt-3 px-4 py-2 rounded font-bold transition-all duration-300
+          ${isCheatMode 
+            ? "bg-yellow-400 text-yellow-900 shadow-lg shadow-yellow-300 animate-pulse" 
+            : "bg-gray-200 text-gray-600"
+          }`}
+      >
+        {isCheatMode ? "⭐ Use That Magic!" : "0 — Cheat Mode"}
+      </button>
     </div>
   )
 }
