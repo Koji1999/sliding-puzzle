@@ -21,7 +21,7 @@ function App() {
       {solved && <p className="text-green-500 font-bold mb-4">You solved it! 🎉</p>}
       <div className={`p-3 rounded-xl transition-all duration-300
         ${isCheatMode 
-          ? "shadow-lg shadow-yellow-300 ring-2 ring-yellow-400 animate-pulse bg-yellow-50" 
+          ? "ring-2 ring-yellow-400 animate-pulse bg-yellow-50 rainbow-glow" 
           : "bg-gray-100"
         }`}>
         <div className="grid grid-cols-4 gap-2">
