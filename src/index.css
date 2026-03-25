@@ -1,1 +1,20 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+body {
+  margin: 0;
+}
+
+@keyframes rainbow {
+  0%   { box-shadow: 0 0 20px 8px #ff0000; }
+  16%  { box-shadow: 0 0 20px 8px #ff8800; }
+  33%  { box-shadow: 0 0 20px 8px #ffff00; }
+  50%  { box-shadow: 0 0 20px 8px #00ff00; }
+  66%  { box-shadow: 0 0 20px 8px #0000ff; }
+  83%  { box-shadow: 0 0 20px 8px #8800ff; }
+  100% { box-shadow: 0 0 20px 8px #ff0000; }
+}
+
+.rainbow-glow {
+  animation: rainbow 2s linear infinite;
+}
