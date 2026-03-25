@@ -98,7 +98,7 @@ function App() {
 
       {solved ? (
         <button
-          className="mt-4 bg-green-400 border-2 border-green-600 rounded-xl px-6 py-2 font-bold text-green-900 hover:bg-green-300 transition-colors"
+          className="mt-4 bg-green-100 border-2 border-green-600 rounded-xl px-6 py-2 font-bold text-green-900 hover:bg-green-300 transition-colors"
           style={{boxShadow: '4px 4px 0px #16a34a'}}
           onClick={handlePlayAgain}
         >
