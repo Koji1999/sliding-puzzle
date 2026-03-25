@@ -45,7 +45,7 @@ function App() {
             : "bg-gray-200 text-gray-600"
           }`}
       >
-        {isCheatMode ? "⭐ Use That Magic!" : "0 — Cheat Mode"}
+        {isCheatMode ? "⭐ Use That Magic!" : "Use Cheat Mode"}
       </button>
     </div>
   )
