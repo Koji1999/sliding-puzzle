@@ -37,12 +37,18 @@ function App() {
   ) : (
     <div className="flex justify-between w-80">
       <p className="text-gray-500">Moves: {moves}</p>
-      <button
-        onClick={() => setIsCheatMode(prev => !prev)}
-        className="text-gray-500 hover:text-gray-800 transition-colors font-medium"
-      >
-        {isCheatMode ? "Cheat Mode: ON\u00A0" : "Cheat Mode: OFF"}
-      </button>
+      <div className="flex items-center gap-2">
+        <span className="text-sm text-gray-500 font-medium">Cheat Mode</span>
+        <button
+          onClick={() => setIsCheatMode(prev => !prev)}
+          className={`relative w-12 h-6 rounded-full transition-colors duration-200
+            ${isCheatMode ? "bg-yellow-400" : "bg-gray-300"}`}
+        >
+          <span className={`absolute top-1 left-1 w-4 h-4 bg-white rounded-full shadow transition-transform duration-200
+            ${isCheatMode ? "translate-x-6" : "translate-x-0"}`}
+          />
+        </button>
+      </div>
     </div>
   );
 
@@ -85,14 +91,16 @@ function App() {
 
       {solved ? (
         <button
-          className="mt-6 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 transition-colors"
+          className="mt-4 bg-green-100 border-2 border-green-600 rounded-xl px-6 py-2 font-bold text-green-900 hover:bg-green-300 transition-colors"
+          style={{boxShadow: '4px 4px 0px #16a34a'}}
           onClick={handlePlayAgain}
         >
           Play Again
         </button>
       ) : (
         <button
-          className="mt-6 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 transition-colors"
+          className="mt-4 bg-white border-2 border-gray-400 rounded-xl px-6 py-2 font-bold text-gray-600 hover:border-gray-500 transition-colors"
+          style={{boxShadow: '3px 3px 0px #d1d5db'}}
           onClick={() => { setTiles(getShuffledBoard()); setMoves(0); }}
         >
           Shuffle
