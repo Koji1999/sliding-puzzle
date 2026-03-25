@@ -33,7 +33,7 @@ function App() {
   };
 
   const movesDisplay = solved ? (
-    <p className="text-gray-500 flex justify-center w-100">Solved in {moves} moves</p>
+    <p className="text-gray-500">Solved in {moves} moves</p>
   ) : (
     <div className="flex justify-between w-80">
       <p className="text-gray-500">Moves: {moves}</p>
@@ -75,23 +75,30 @@ function App() {
             ? "ring-2 ring-yellow-400 bg-yellow-50 cheat-glow"
             : "bg-gray-100"
           }`}>
-          <div className="grid grid-cols-4 gap-2">
+          <div className="relative grid grid-cols-4 gap-2">
+            
+            {Array.from({ length: 16 }).map((_, index) => (
+              <div key={index} className="w-20 h-20 rounded-lg bg-gray-300" />
+            ))}
+
             {tiles.map((tile, index) => (
               <Tile
                 key={index}
                 tile={tile}
                 index={index}
                 isCheatMode={isCheatMode}
+                solved={solved}
                 onClick={() => handleTileClick(index)}
               />
             ))}
+
           </div>
         </div>
       </DndContext>
 
       {solved ? (
         <button
-          className="mt-4 bg-green-100 border-2 border-green-600 rounded-xl px-6 py-2 font-bold text-green-900 hover:bg-green-300 transition-colors"
+          className="mt-6 bg-green-400 border-2 border-green-600 rounded-xl px-6 py-2 font-bold text-green-900 hover:bg-green-300 transition-colors"
           style={{boxShadow: '4px 4px 0px #16a34a'}}
           onClick={handlePlayAgain}
         >
@@ -99,7 +106,7 @@ function App() {
         </button>
       ) : (
         <button
-          className="mt-4 bg-white border-2 border-gray-400 rounded-xl px-6 py-2 font-bold text-gray-600 hover:border-gray-500 transition-colors"
+          className="mt-4 bg-white border-2 border-gray-300 rounded-xl px-6 py-2 font-bold text-gray-600 hover:border-gray-400 transition-colors"
           style={{boxShadow: '3px 3px 0px #d1d5db'}}
           onClick={() => { setTiles(getShuffledBoard()); setMoves(0); }}
         >

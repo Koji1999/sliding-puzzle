@@ -45,15 +45,14 @@ export function getShuffledBoard(): number[] {
 export function moveTile(tiles: number[], index: number): number[] {
   const emptyIndex = tiles.indexOf(0);
   const validMoves = [
-    emptyIndex - 1,  // left
-    emptyIndex + 1,  // right
-    emptyIndex - 4,  // up
-    emptyIndex + 4,  // down
+    emptyIndex - 1,
+    emptyIndex + 1,
+    emptyIndex - 4,
+    emptyIndex + 4,
   ];
 
   if (!validMoves.includes(index)) return tiles;
 
-  // prevent wrapping — left/right moves can't cross row boundaries
   if (index === emptyIndex - 1 && emptyIndex % 4 === 0) return tiles;
   if (index === emptyIndex + 1 && index % 4 === 0) return tiles;
 
