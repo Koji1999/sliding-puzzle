@@ -5,8 +5,8 @@ body {
 }
 
 @keyframes ring-pulse {
-  0%, 100% { box-shadow: 0 0 15px 10px rgba(250, 204, 21, 0.6); }
-  50% { box-shadow: 0 0 25px 15px rgba(250, 204, 21, 0.9); }
+  0%, 100% { box-shadow: 0 0 15px 8px rgba(250, 204, 21, 0.6); }
+  50% { box-shadow: 0 0 25px 12px rgba(250, 204, 21, 0.9); }
 }
 
 .cheat-glow {
