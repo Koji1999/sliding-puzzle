@@ -16,12 +16,11 @@ function App() {
 
   return (
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
-      <h1 className="text-3xl font-bold mb-4">Sliding Puzzle</h1>
-      <p className="text-gray-500 mb-4">Moves: {moves}</p>
-      {solved && <p className="text-green-500 font-bold mb-4">You solved it! 🎉</p>}
+      <h1 className="text-3xl font-bold mb-6">Sliding Puzzle</h1>
+      
       <div className={`p-3 rounded-xl transition-all duration-300
         ${isCheatMode 
-          ? "ring-2 ring-yellow-400 animate-pulse bg-yellow-50 rainbow-glow" 
+          ? "ring-2 ring-yellow-400 animate-pulse bg-yellow-50 cheat-glow" 
           : "bg-gray-100"
         }`}>
         <div className="grid grid-cols-4 gap-2">
@@ -37,17 +36,41 @@ function App() {
           ))}
         </div>
       </div>
+
+      <div className="flex justify-between w-80 mt-4">
+        <p className="text-gray-500">Moves: {moves}</p>
+        <button
+          onClick={() => setIsCheatMode(prev => !prev)}
+          className="text-gray-500 hover:text-gray-800 transition-colors font-medium"
+        >
+          {isCheatMode ? "Cheat Mode: Off" : "Cheat Mode: On"}
+        </button>
+      </div>
+
+      {solved && (
+        <>
+          <div className="fixed inset-0 bg-black bg-opacity-50 z-10" />
+          <div className="fixed inset-0 flex items-center justify-center z-20 pointer-events-none">
+            <div className="bg-white rounded-2xl p-8 flex flex-col items-center gap-4 shadow-xl pointer-events-auto" 
+                style={{marginTop: '-300px'}}>
+              <p className="text-4xl">🎉</p>
+              <h2 className="text-2xl font-bold text-gray-800">You solved it!</h2>
+              <p className="text-gray-500">Completed in {moves} moves</p>
+              <button
+                onClick={() => { setTiles(getShuffledBoard()); setMoves(0); }}
+                className="px-6 py-2 bg-gray-800 text-white rounded-lg hover:bg-gray-600 transition-colors font-medium"
+              >
+                Play Again
+              </button>
+            </div>
+          </div>
+        </>
+      )}
       <button
         className="mt-6 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 transition-colors"
         onClick={() => { setTiles(getShuffledBoard()); setMoves(0); }}
       >
         Shuffle
-      </button>
-      <button
-        onClick={() => setIsCheatMode(prev => !prev)}
-        className="mt-3 px-4 py-2 rounded font-bold transition-all duration-300 bg-gray-200 text-gray-600 hover:bg-gray-300"
-      >
-        {isCheatMode ? "✨ Turn Off Magic" : "⭐ Use That Magic"}
       </button>
     </div>
   )
