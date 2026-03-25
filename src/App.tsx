@@ -18,7 +18,7 @@ function App() {
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
       <h1 className="text-3xl font-bold mb-6">Sliding Puzzle</h1>
       
-      <div className={`p-3 rounded-xl transition-all duration-300
+      <div className={`p-3 rounded-xl transition-all duration-300 z-10
         ${isCheatMode 
           ? "ring-2 ring-yellow-400 animate-pulse bg-yellow-50 cheat-glow" 
           : "bg-gray-100"
@@ -43,9 +43,16 @@ function App() {
           onClick={() => setIsCheatMode(prev => !prev)}
           className="text-gray-500 hover:text-gray-800 transition-colors font-medium"
         >
-          {isCheatMode ? "Cheat Mode: Off" : "Cheat Mode: On"}
+          {isCheatMode ? "Cheat Mode: ON " : "Cheat Mode: OFF"}
         </button>
       </div>
+
+      <button
+        className="mt-6 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 transition-colors"
+        onClick={() => { setTiles(getShuffledBoard()); setMoves(0); }}
+      >
+        Shuffle
+      </button>
 
       {solved && (
         <>
@@ -66,12 +73,6 @@ function App() {
           </div>
         </>
       )}
-      <button
-        className="mt-6 px-4 py-2 bg-gray-800 text-white rounded hover:bg-gray-600 transition-colors"
-        onClick={() => { setTiles(getShuffledBoard()); setMoves(0); }}
-      >
-        Shuffle
-      </button>
     </div>
   )
 }
