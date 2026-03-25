@@ -1,5 +1,7 @@
 import { useState } from "react";
-import { getShuffledBoard, isSolved, moveTile } from "./utils/puzzle";
+import { DndContext, DragEndEvent } from "@dnd-kit/core";
+import { getShuffledBoard, isSolved, moveTile, swapTiles } from "./utils/puzzle";
+import Tile from "./components/Tile";
 
 function App() {
   const [tiles, setTiles] = useState<number[]>(getShuffledBoard);
@@ -13,6 +15,14 @@ function App() {
     const newTiles = moveTile(tiles, index);
     if (newTiles !== tiles) setMoves(m => m + 1);
     setTiles(newTiles);
+  };
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    const { active, over } = event;
+    if (!over) return;
+    if (active.id === over.id) return;
+    setTiles(prev => swapTiles(prev, Number(active.id), Number(over.id)));
+    setMoves(m => m + 1);
   };
 
   const handlePlayAgain = () => {
@@ -48,24 +58,25 @@ function App() {
         {movesDisplay}
       </div>
 
-      <div className={`p-3 rounded-xl transition-all duration-300 relative z-30
-        ${isCheatMode
-          ? "ring-2 ring-yellow-400 animate-pulse bg-yellow-50 cheat-glow"
-          : "bg-gray-100"
-        }`}>
-        <div className="grid grid-cols-4 gap-2">
-          {tiles.map((tile, index) => (
-            <div
-              key={index}
-              onClick={() => handleTileClick(index)}
-              className={`w-20 h-20 flex items-center justify-center text-2xl font-bold rounded-lg cursor-pointer
-                ${tile === 0 ? "bg-gray-200" : "bg-white border border-gray-300 hover:bg-gray-50"}`}
-            >
-              {tile !== 0 && tile}
-            </div>
-          ))}
+      <DndContext onDragEnd={handleDragEnd}>
+        <div className={`p-3 rounded-xl transition-all duration-300 relative z-30
+          ${isCheatMode
+            ? "ring-2 ring-yellow-400 animate-pulse bg-yellow-50 cheat-glow"
+            : "bg-gray-100"
+          }`}>
+          <div className="grid grid-cols-4 gap-2">
+            {tiles.map((tile, index) => (
+              <Tile
+                key={index}
+                tile={tile}
+                index={index}
+                isCheatMode={isCheatMode}
+                onClick={() => handleTileClick(index)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      </DndContext>
 
       {solved ? (
         <button
