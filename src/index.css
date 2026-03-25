@@ -4,6 +4,11 @@ body {
   margin: 0;
 }
 
+@keyframes ring-pulse {
+  0%, 100% { box-shadow: 0 0 25px 10px rgba(250, 204, 21, 0.6); }
+  50% { box-shadow: 0 0 35px 15px rgba(250, 204, 21, 0.9); }
+}
+
 .cheat-glow {
-  box-shadow: 0 0 25px 10px rgba(250, 204, 21, 0.6);
+  animation: ring-pulse 2s ease-in-out infinite;
 }
