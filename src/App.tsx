@@ -50,9 +50,13 @@ function App() {
     <div className="flex flex-col items-center justify-center h-screen bg-gray-100">
 
       {solved ? (
-        <h1 className="text-3xl font-bold mb-6">You solved it! 🎉</h1>
+        <div className="border-3 border-gray-800 rounded-xl px-7 py-2 mb-6 bg-white" style={{boxShadow: '5px 5px 0px #1f2937'}}>
+          <h1 className="text-2xl font-extrabold text-gray-800">You solved it! 🎉</h1>
+        </div>
       ) : (
-        <h1 className="text-3xl font-bold mb-6">Sliding Puzzle</h1>
+        <div className="border-3 border-gray-800 rounded-xl px-7 py-2 mb-6 bg-white" style={{boxShadow: '5px 5px 0px #1f2937'}}>
+          <h1 className="text-2xl font-extrabold text-gray-800">Sliding Puzzle</h1>
+        </div>
       )}
 
       <div className="flex justify-between w-80 mb-5">
