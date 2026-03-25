@@ -4,6 +4,7 @@ import { getShuffledBoard, isSolved, moveTile } from "./utils/puzzle";
 function App() {
   const [tiles, setTiles] = useState<number[]>(getShuffledBoard);
   const [moves, setMoves] = useState(0);
+  const [isCheatMode, setIsCheatMode] = useState(false); 
 
   const solved = isSolved(tiles);
 
